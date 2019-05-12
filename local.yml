@@ -1,22 +1,7 @@
 - hosts: localhost
   become: true
   pre_tasks:
-  - name: Add Virtualbox Keys 1
-    apt_key:
-      url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
-      state: present
-
-  - name: Add Virtualbox Keys 2
-    apt_key:
-      url: https://www.virtualbox.org/download/oracle_vbox.asc
-      state: present
-
-  - name: Add Virtualbox repository
-    apt_repository:
-      repo: deb https://download.virtualbox.org/virtualbox/debian disco contrib
-      state: present
-      filename: virtualbox-6.0
-      update_cache: yes
+  - include: pre_tasks/virtualbox.yml
 
   tasks:
     - include: tasks/users.yml
