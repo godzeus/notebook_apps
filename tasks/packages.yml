@@ -1,0 +1,6 @@
+---
+  - name: "Install apps"
+    apt:
+      name: ['flameshot', 'tilix', 'gnome-tweaks', 'openconnect', 'openvpn', 'virtualbox-6.0']
+
+...

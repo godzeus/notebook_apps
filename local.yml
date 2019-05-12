@@ -1,29 +1,25 @@
----
 - hosts: localhost
   become: true
-  tasks:
+  pre_tasks:
   - name: Add Virtualbox Keys 1
     apt_key:
       url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
       state: present
+
   - name: Add Virtualbox Keys 2
     apt_key:
       url: https://www.virtualbox.org/download/oracle_vbox.asc
       state: present
 
-  - name: Add Virtualbox repository 
-    apt_repository: 
+  - name: Add Virtualbox repository
+    apt_repository:
       repo: deb https://download.virtualbox.org/virtualbox/debian disco contrib
       state: present
       filename: virtualbox-6.0
       update_cache: yes
-  
-  - name: Update cache
-    apt:
-      update_cache: yes
-  
-  - name: "Install apps"
-    apt: 
-      name: ['flameshot', 'tilix', 'gnome-tweaks', 'openconnect', 'openvpn', 'virtualbox-6.0']
-            
-...
+      changed_when: False
+
+  tasks:
+    - include: tasks/users.yml
+    - include: tasks/cron.yml
+    - include: tasks/packages.yml
