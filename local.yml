@@ -17,7 +17,6 @@
       state: present
       filename: virtualbox-6.0
       update_cache: yes
-      changed_when: False
 
   tasks:
     - include: tasks/users.yml
